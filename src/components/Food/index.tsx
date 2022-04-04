@@ -15,7 +15,9 @@ interface FoodProps {
 }
 
 interface FoodFunctionPorps {
-  handleEditFood: () => Promise<void>;
+  handleEditFood: () => void;
+  handleDelete: ()=> void;
+  foodObject: ()=> Promise<void>;
 }
 
   export function Food(props: FoodProps) {
@@ -41,8 +43,8 @@ interface FoodFunctionPorps {
     }, [])
   }
 
-  function setEditingFood(handleEditFood : FoodFunctionPorps) {
-    handleEditFood(food);
+  function setEditingFood({handleEditFood}: FoodFunctionPorps) {
+    handleEditFood();
   }
   
     // const { isAvailable } = this.state;

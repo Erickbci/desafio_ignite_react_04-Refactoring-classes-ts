@@ -15,13 +15,13 @@ interface DashboardProps {
 }
 
 interface FoodProps {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  isAvailable: boolean;  
-  image: string;
-}
+    id: number,
+    name: string,
+    description: string,
+    price: string,
+    isAvailable: boolean,  
+    image: string,
+  }
   export function Dashboard(props: DashboardProps){
 
     const [food, setFood] = useState<FoodProps[]>([])
@@ -65,16 +65,17 @@ interface FoodProps {
   //   }
   // }
 
-  // async function handleDeleteFood(id: number){
-  //   // const { foods } = this.state;
+  async function handleDeleteFood(props: FoodProps){
+    // const { foods } = this.state;
 
+    const foodsFiltered = food.filter(food => food.id !== id);
+    const response = await api.delete(`/foods/${food.id}`);
+    const {foods} = response.data
 
-  //   await api.delete(`/foods/${id}`);
+    
 
-  //   const foodsFiltered = props.foods.filter(food => food.id !== id);
-
-  //   // this.setState({ foods: foodsFiltered });
-  // }
+    setFood(foodsFiltered)
+  }
 
   // toggleModal = () => {
   //   const { modalOpen } = this.state;
@@ -116,7 +117,7 @@ interface FoodProps {
               <Food
                 key={food.id}
                 food={food}
-                handleDelete={this.handleDeleteFood}
+                handleDelete={handleDeleteFood}
                 handleEditFood={handleEditFood}
               />
             ))}
