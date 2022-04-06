@@ -15,12 +15,12 @@ interface DashboardProps {
 }
 
 interface FoodProps {
-    id: number,
-    name: string,
-    description: string,
-    price: string,
-    isAvailable: boolean,  
-    image: string,
+    id: Number;
+    name: String;
+    description: String;
+    price: String;
+    isAvailable: Boolean;  
+    image: String;
   }
   export function Dashboard(props: DashboardProps){
 
@@ -66,13 +66,10 @@ interface FoodProps {
   // }
 
   async function handleDeleteFood(props: FoodProps){
-    // const { foods } = this.state;
 
-    const foodsFiltered = food.filter(food => food.id !== id);
-    const response = await api.delete(`/foods/${food.id}`);
-    const {foods} = response.data
-
-    
+    const foodsFiltered = food.filter(food => food.id !== props.id);
+    const response = await api.delete(`/foods/${props.id}`);
+    const { foods } = response.data
 
     setFood(foodsFiltered)
   }
@@ -98,17 +95,17 @@ interface FoodProps {
 
     return (
       <>
-        <Header openModal={this.toggleModal} />
+        <Header openModal={toggleModal} />
         <ModalAddFood
           isOpen={modalOpen}
-          setIsOpen={this.toggleModal}
-          handleAddFood={this.handleAddFood}
+          setIsOpen={toggleModal}
+          handleAddFood={handleAddFood}
         />
         <ModalEditFood
           isOpen={editModalOpen}
-          setIsOpen={this.toggleEditModal}
+          setIsOpen={toggleEditModal}
           editingFood={editingFood}
-          handleUpdateFood={this.handleUpdateFood}
+          handleUpdateFood={handleUpdateFood}
         />
 
         <FoodsContainer data-testid="foods-list">
