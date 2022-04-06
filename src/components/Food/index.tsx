@@ -76,7 +76,7 @@ interface FoodFunctionPorps {
             <button
               type="button"
               className="icon"
-              onClick={() => handleDelete(props.id)}
+              // onClick={() => handleDelete(props.id)}
               data-testid={`remove-food-${props.id}`}
             >
               <FiTrash size={20} />
