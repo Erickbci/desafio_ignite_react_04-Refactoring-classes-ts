@@ -3,7 +3,7 @@ import { Component, useState } from 'react';
 import {Header} from '../../components/Header';
 import api from '../../services/api';
 import Food from '../../components/Food';
-import ModalAddFood from '../../components/ModalAddFood';
+import {ModalAddFood} from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
 
@@ -14,17 +14,17 @@ interface DashboardProps {
   editModalOpen: false,
 }
 
-// interface FoodProps {
-//     id: Number;
-//     name: String;
-//     description: String;
-//     price: String;
-//     isAvailable: Boolean;  
-//     image: String;
-  // }
+interface FoodProps {
+    id: Number;
+    name: String;
+    description: String;
+    price: String;
+    isAvailable: Boolean;  
+    image: String;
+  }
   export function Dashboard(props: DashboardProps){
 
-    // const [food, setFood] = useState<FoodProps[]>([])
+    const [food, setFood] = useState<FoodProps[]>([])
     const [isModalOpen, setIsModalOpen] = useState(false)
   // async componentDidMount() {
   //   const response = await api.get('/foods');
@@ -32,8 +32,7 @@ interface DashboardProps {
   //   this.setState({ foods: response.data });
   // }
 
-  handleAddFood = async food => {
-    const { foods } = this.state;
+  async function handleAddFood(props: DashboardProps){
 
     try {
       const response = await api.post('/foods', {
@@ -41,7 +40,7 @@ interface DashboardProps {
         available: true,
       });
 
-      this.setState({ foods: [...foods, response.data] });
+      setFood(...props.foods, response.data);
     } catch (err) {
       console.log(err);
     }
