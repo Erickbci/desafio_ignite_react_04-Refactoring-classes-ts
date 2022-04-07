@@ -32,20 +32,20 @@ interface DashboardProps {
   //   this.setState({ foods: response.data });
   // }
 
-  // handleAddFood = async food => {
-  //   const { foods } = this.state;
+  handleAddFood = async food => {
+    const { foods } = this.state;
 
-  //   try {
-  //     const response = await api.post('/foods', {
-  //       ...food,
-  //       available: true,
-  //     });
+    try {
+      const response = await api.post('/foods', {
+        ...food,
+        available: true,
+      });
 
-  //     this.setState({ foods: [...foods, response.data] });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+      this.setState({ foods: [...foods, response.data] });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   // handleUpdateFood = async food => {
   //   const { foods, editingFood } = this.state;
@@ -97,11 +97,12 @@ interface DashboardProps {
         <Header 
         openModal={toggleModal}
          />
-        {/* <ModalAddFood
-          isOpen={modalOpen}
+         <ModalAddFood
+          isOpen={isModalOpen}
           setIsOpen={toggleModal}
           handleAddFood={handleAddFood}
         />
+        {/*
         <ModalEditFood
           isOpen={editModalOpen}
           setIsOpen={toggleEditModal}
